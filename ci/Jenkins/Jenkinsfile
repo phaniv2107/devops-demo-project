@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', url: 'https://github.com/deepakkr35/devops-demo-project.git'
+        git branch: 'main', url: 'https://github.com/phaniv2107/devops-demo-project.git'
       }
     }
     stage('Build and Test') {
@@ -18,7 +18,7 @@ pipeline {
     }
     stage('Static Code Analysis') {
       environment {
-        SONAR_URL = "http://sonarqube:9000"
+        SONAR_URL = "http://ec2-35-171-155-37.compute-1.amazonaws.com:9000"
       }
       steps {
         withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
