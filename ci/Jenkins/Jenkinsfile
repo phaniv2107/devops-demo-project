@@ -1,3 +1,4 @@
+@Library('my-shared-lib') _
 pipeline {
   agent any
   parameters {
@@ -11,9 +12,10 @@ pipeline {
     }
     stage('Build and Test') {
       steps {
-        sh 'ls -ltr'
+        buildAndTest('demo-java-app')
+        //sh 'ls -ltr'
         // build the project and create a JAR file
-        sh 'cd demo-java-app && mvn clean package'
+        //sh 'cd demo-java-app && mvn clean package'
       }
     }
 
