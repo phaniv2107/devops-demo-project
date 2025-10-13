@@ -6,7 +6,7 @@ pipeline {
   stages {
     stage('Checkout') {
       steps {
-        git branch: 'main', url: 'https://github.com/deepakkr35/devops-demo-project.git'
+        git branch: 'main', url: 'https://github.com/deepakkr35/devops-demo-project.git'https://github.com/deepakkr35/devops-demo-project/blob/main/ci/Jenkins/Jenkinsfile
       }
     }
     stage('Build and Test') {
@@ -17,6 +17,10 @@ pipeline {
       }
     }
     stage('Static Code Analysis') {
+
+       when (BRANCH_NAME != 'master') {
+        echo 'Skipping sonar as there is server issue.'
+       }
       environment {
         SONAR_URL = "http://sonarqube:9000"
       }
