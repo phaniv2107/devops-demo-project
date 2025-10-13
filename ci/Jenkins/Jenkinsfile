@@ -16,6 +16,19 @@ pipeline {
         sh 'cd demo-java-app && mvn clean package'
       }
     }
+
+    stage('Static Code Analysis') {
+ steps {
+   withCredentials([string(credentialsId: 'sonarqube', variable: 'SONAR_AUTH_TOKEN')]) {
+     sh """
+       cd demo-java-app
+       mvn clean verify sonar:sonar \
+         -Dsonar.host.url=${SONAR_URL} \
+         -Dsonar.login=${SONAR_AUTH_TOKEN}
+     """
+      }
+     }
+   }
     /*stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://13.201.37.76:9100"
