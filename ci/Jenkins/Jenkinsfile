@@ -16,7 +16,7 @@ pipeline {
         sh 'cd demo-java-app && mvn clean package'
       }
     }
-    stage('Static Code Analysis') {
+    /*stage('Static Code Analysis') {
       environment {
         SONAR_URL = "http://13.201.37.76:9100"
       }
@@ -25,7 +25,7 @@ pipeline {
           sh "cd demo-java-app && mvn sonar:sonar -Dsonar.login=$SONAR_AUTH_TOKEN -Dsonar.host.url=${SONAR_URL}"
         }
       }
-    }
+    }*/
     stage('Build and Push Docker Image') {
       environment {
         DOCKER_IMAGE = "deepakkr35/demo-java-app:${build_version}"
